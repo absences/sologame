@@ -37,7 +37,7 @@ public class SelectPanelNode : MonoBehaviour
     }
     void CloseThis()
     {
-        gameObject.SetActive(false);
+        Bg.gameObject.SetActive(false);
     }
     void OnSelect(int k)
     {
