@@ -64,24 +64,25 @@ public class SoloGame : MonoBehaviour
 
     public void GenSolo()
     {
-        List<List<int>> param = new List<List<int>>()
-                {
-                    new List<int> {0, 9, 0,     4, 8, 0,     0, 0, 0},
-                    new List<int> {6, 4, 0,     0, 0, 0,     0, 2, 7},
-                    new List<int> {1, 2, 8,     4, 7, 0,     0, 5, 6},
+        ResetGrids();
+        //List<List<int>> param = new List<List<int>>()
+        //        {
+        //            new List<int> {0, 9, 0,     4, 8, 0,     0, 0, 0},
+        //            new List<int> {6, 4, 0,     0, 0, 0,     0, 2, 7},
+        //            new List<int> {1, 2, 8,     4, 7, 0,     0, 5, 6},
 
-                    new List<int> {2, 5, 1,     0, 6, 0,     0, 0, 8},
-                    new List<int> {0, 0, 0,     0, 0, 0,     0, 0, 0},
-                    new List<int> {8, 0, 0,     0, 5, 0,     2, 6, 0},
+        //            new List<int> {2, 5, 1,     0, 6, 0,     0, 0, 8},
+        //            new List<int> {0, 0, 0,     0, 0, 0,     0, 0, 0},
+        //            new List<int> {8, 0, 0,     0, 5, 0,     2, 6, 0},
 
-                    new List<int> {0, 8, 0,     0, 3, 0,     0, 7, 0},
-                    new List<int> {5, 0, 2,     7, 4, 0,     0, 8, 3},
-                    new List<int> {3, 0, 7,     5, 0, 0,     4, 0, 2}
-            };
+        //            new List<int> {0, 8, 0,     0, 3, 0,     0, 7, 0},
+        //            new List<int> {5, 0, 2,     7, 4, 0,     0, 8, 3},
+        //            new List<int> {3, 0, 7,     5, 0, 0,     4, 0, 2}
+        //    };
 
-        currentMarket = new SudokuMarket(param);
+        //currentMarket = new SudokuMarket(param);
 
-       // currentMarket = sdkGenerator.AutoQuestion(sdkBuilder.MakeSudoku(), int.Parse(noticeNumber.text));
+        currentMarket = sdkGenerator.AutoQuestion(sdkBuilder.MakeSudoku(), int.Parse(noticeNumber.text));
 
         var questions = currentMarket.initValues;
 
