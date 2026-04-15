@@ -7,3 +7,5 @@ UserSettings/*
 .vsconfig
 *.csproj
 .vs/*
+sologame_BurstDebugInformation_DoNotShip/*
+obj/*
