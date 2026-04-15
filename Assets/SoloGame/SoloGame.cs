@@ -109,7 +109,7 @@ public class SoloGame : MonoBehaviour
             (k) =>
                 OnSelectNode(pos, k));
     }
-    void OnSelectNode((int, int) pos, int k)
+    void OnSelectNode((int, int) pos, int k) //k>=0
     {
         Dictionary<(int, int), CellInfo> cells = currentMarket.GetCellInfos();
 
@@ -117,18 +117,32 @@ public class SoloGame : MonoBehaviour
 
         var ui = board.GetCellNode(pos);
 
-        ui.SetNumberTxt(k + 1);
-
         var init = cell.initrest;
 
-        var valid = init.Contains(k + 1);
+        ui.SetNumberTxt(k + 1);
 
         if (ui.NumberCount == 1)
         {
-            cell.SetValue(k + 1);
+           for ( var i = 0; i < ui.NumStatus.Length; i++ )
+            {
+                if (ui.NumStatus[i])
+                {
+                    cell.SetValue(i + 1);
+
+                    var t = init.Contains(i + 1);
+                    ui.RefreshStatus(t);
+
+                    break;
+                }
+            }
+
+        }
+        else
+        {
+            ui.RefreshStatus(false);
         }
 
-        ui.RefreshStatus(ui.NumberCount == 1 && valid);
+       
     }
     private void UpdateCurrentSudokuInfo()
     {

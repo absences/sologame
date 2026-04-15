@@ -5,8 +5,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static Unity.Collections.AllocatorManager;
-
 
 public class SelectPanelNode : MonoBehaviour
 {
@@ -44,13 +42,13 @@ public class SelectPanelNode : MonoBehaviour
         if (Block)
             return;
         Block = true;
-        UniTask.Create(async () =>
-        {
+      //  UniTask.Create(async () =>
+       // {
             Root.DOScale(0, 0.3f);
-            await UniTask.WaitForSeconds(0.2f);
+         //   await UniTask.WaitForSeconds(0.2f);
             Bg.gameObject.SetActive(false);
             OnSelectValue.Invoke(k);
-        });
+       // });
     }
     // Update is called once per frame
     void Update()

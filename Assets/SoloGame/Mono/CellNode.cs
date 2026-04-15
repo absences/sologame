@@ -84,8 +84,13 @@ public class CellNode : MonoBehaviour
         if (NumberCount == 1)
         {
             for (int i = 0; i < Numbers.Length; i++)
+            {
                 Numbers[i].SetActive(false);
-            numTxt.text = val.ToString();
+
+                if (NumStatus[i])
+                    numTxt.text = (i + 1).ToString();
+            }
+          
         }
         else
         {
