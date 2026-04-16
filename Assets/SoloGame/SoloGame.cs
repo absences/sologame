@@ -101,7 +101,10 @@ public class SoloGame : MonoBehaviour
         if (value)
             board.ShowHelp(cells);
     }
-
+    public void Quit()
+    {
+        Application.Quit();
+    }
     public void SaveTemp()
     {
         if (currentMarket == null) return;
