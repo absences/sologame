@@ -62,7 +62,11 @@ public class ChessBoard : MonoBehaviour
 
             if (!cellInfo.isInit)
             {
+                cellInfo.ClearValue();
+
                 var list = cellInfo.initrest;
+
+                cell.ResetCell();
 
                 foreach (var n in list)
                 {
