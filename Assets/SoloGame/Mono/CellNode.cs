@@ -104,6 +104,12 @@ public class CellNode : MonoBehaviour
 
     public void RefreshStatus(bool valid)
     {
-        numTxt.color = valid ? Color.green : Color.red;
+        numTxt.color = valid ? HexToColor("#00BE00FF") : Color.red;
+    }
+    Color HexToColor(string s)
+    {
+        Color c;
+        ColorUtility.TryParseHtmlString(s, out c);
+        return c;
     }
 }
