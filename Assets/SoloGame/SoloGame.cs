@@ -1,9 +1,11 @@
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SudokuBase;
 using SudokuFactory;
 using SudokuGenerator;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,6 +31,8 @@ public class SoloGame : MonoBehaviour
     private const int numbers = 9;
 
     public SelectPanelNode selectPanelNode;
+
+    private string tempData;
     // Start is called before the first frame update
     void Start()
     {
@@ -97,6 +101,63 @@ public class SoloGame : MonoBehaviour
         if (value)
             board.ShowHelp(cells);
     }
+
+    public void SaveTemp()
+    {
+        if (currentMarket == null) return;
+
+        var cells = currentMarket.GetCellInfos();
+        var currentValues = new Dictionary<string, int>();
+        foreach (var kv in cells)
+        {
+            currentValues[$"{kv.Key.Item1},{kv.Key.Item2}"] = kv.Value.Value;
+        }
+        var saveData = new Save
+        {
+            InitValues = currentMarket.initValues,
+            CurrentValues = currentValues
+        };
+        tempData = JsonConvert.SerializeObject(saveData);
+    }
+    class Save
+    {
+       public List<List<int>> InitValues { get; set; }
+       public Dictionary<string, int> CurrentValues { get; set; }
+    }
+    public void ReadTemp()
+    {
+        //   if (!PlayerPrefs.HasKey("SudokuSave")) return;
+
+        if (string.IsNullOrEmpty(tempData))
+            return;
+
+        ResetGrids();
+
+       // string json = PlayerPrefs.GetString("SudokuSave");
+        var saveData = JsonConvert.DeserializeObject<Save>(tempData);
+
+        currentMarket = new SudokuMarket(saveData.InitValues);
+        var cells = currentMarket.GetCellInfos();
+        foreach (var kv in saveData.CurrentValues)
+        {
+            if (kv.Value != 0)
+            {
+                var parts = kv.Key.Split(',');
+                int row = int.Parse(parts[0]);
+                int col = int.Parse(parts[1]);
+                cells[(row, col)].SetValue(kv.Value);
+            }
+        }
+
+        UpdateCurrentSudokuInfo();
+        board.GenerateCells(cells, OnClickCell);
+        if (helpToggle.isOn)
+        {
+            board.ShowHelp(cells);
+        }
+    }
+
+
     void OnClickCell((int,int) pos)
     {
         // var r = cell.GetRest();
@@ -139,6 +200,7 @@ public class SoloGame : MonoBehaviour
         }
         else
         {
+            cell.ClearValue();
             ui.RefreshStatus(false);
         }
 

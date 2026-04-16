@@ -102,7 +102,7 @@ namespace SudokuBase
             return (x / 3) * 3 + (y / 3);
         }
         public string variablename;
-        
+
         public int location;
         public bool Equals(CellInfo x)
         {
@@ -116,14 +116,14 @@ namespace SudokuBase
             location = x * 9 + y;
             variablename = "x" + ("" + (location + 100)).Substring(1, 2);
             ProgramPostion = "postion_" + x + "_" + y;
-            showPostion =  (x + 1) + "行" + (y + 1)+ "列" ;
+            showPostion = (x + 1) + "行" + (y + 1) + "列";
             block = GetBlock(row, column);
-            hiddenTripletList=new List<int>();
-            xwing=new List<int>();
+            hiddenTripletList = new List<int>();
+            xwing = new List<int>();
             blockList = new List<int>();
-            UrList=new List<int>();
-            Conflict=new List<int>();
-            solveRests = new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9};
+            UrList = new List<int>();
+            Conflict = new List<int>();
+            solveRests = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             //solveRests = GetRest();
         }
 
@@ -140,25 +140,30 @@ namespace SudokuBase
             }
         }
 
-        /// <summary>
-        /// hangRest 0~8表示行
-        /// </summary>
-        /// <param name="value"></param>
+        public void ClearValue()
+        {
+            currentMarket.rowDatas[row].Remove(Value);
+            currentMarket.columnDatas[column].Remove(Value);
+            currentMarket.blockDatas[block].Remove(Value);
+
+            Value = 0;
+        }
+
         public void SetValue(int value)
         {
-            Value = value;
 
+            // 否则，添加新值（但需要先移除旧值，如果有的话）
+            if (Value != 0)
+            {
+                currentMarket.rowDatas[row].Remove(Value);
+                currentMarket.columnDatas[column].Remove(Value);
+                currentMarket.blockDatas[block].Remove(Value);
+            }
             currentMarket.rowDatas[row].Add(value);
             currentMarket.columnDatas[column].Add(value);
             currentMarket.blockDatas[block].Add(value);
-            //if (value != 0)
-            //{
-            //    solveRests.Clear();
-            //}
-            //else
-            //{
-            //    solveRests = GetRest();
-            //}
+
+            Value = value;
         }
         /// <summary>
         /// 剩余部分
