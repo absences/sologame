@@ -63,14 +63,14 @@ public class ChessBoard : MonoBehaviour
             if (!cellInfo.isInit)
             {
                 var value = cellInfo.Value;
-
+                cell.ResetCell();
                 if (value == 0)
                 {
                     var list = cellInfo.initrest;
 
                     cellInfo.ClearValue();
 
-                    cell.ResetCell();
+                  
 
                     foreach (var n in list)
                     {
@@ -79,10 +79,10 @@ public class ChessBoard : MonoBehaviour
                     cell.RefreshStatus(list.Count == 1);
                   
 
-                    if (list.Count == 1)//可选 初次设置提示的值将写入 否则会被清理
-                    {
-                        cellInfo.SetValue(list[0]);
-                    }
+                    //if (list.Count == 1)//可选 初次设置提示的值将写入 否则会被清理
+                    //{
+                    //    cellInfo.SetValue(list[0]);
+                    //}
                    
                 }
                 else

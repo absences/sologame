@@ -22,7 +22,7 @@ namespace SudokuBase
 
 
         /// <summary>
-        /// 初始化初盘之后,该单元格可填数据
+        /// 该单元格可填数据
         /// </summary>
         public List<int> initrest
         {

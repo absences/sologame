@@ -43,7 +43,7 @@ public class CellNode : MonoBehaviour
 
         foreach (var item in Numbers)
         {
-            item.gameObject.SetActive(false);
+            item.SetActive(false);
         }
 
         NumStatus = new bool[Numbers.Length];
