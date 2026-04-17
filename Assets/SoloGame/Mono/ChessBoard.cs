@@ -62,20 +62,33 @@ public class ChessBoard : MonoBehaviour
 
             if (!cellInfo.isInit)
             {
-                cellInfo.ClearValue();
+                var value = cellInfo.Value;
 
-                var list = cellInfo.initrest;
-
-                cell.ResetCell();
-
-                foreach (var n in list)
+                if (value == 0)
                 {
-                    cell.SetNumberTxt(n);
+                    var list = cellInfo.initrest;
+
+                    cellInfo.ClearValue();
+
+                    cell.ResetCell();
+
+                    foreach (var n in list)
+                    {
+                        cell.SetNumberTxt(n);//设置预选数字
+                    }
+                    cell.RefreshStatus(list.Count == 1);
+                  
+
+                    if (list.Count == 1)//可选 初次设置提示的值将写入 否则会被清理
+                    {
+                        cellInfo.SetValue(list[0]);
+                    }
+                   
                 }
-
-                // cellInfo.row
-
-                cell.RefreshStatus(list.Count == 1);
+                else
+                {
+                    cell.SetNumberTxt(value);
+                }
             }
         }
     }
@@ -90,20 +103,13 @@ public class ChessBoard : MonoBehaviour
 
             if (!cellInfo.isInit)
             {
+                var value = cellInfo.Value;
                 cell.ResetCell();
+                if (value != 0)
+                {
+                    cell.SetNumberTxt(value);
+                }
             }
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -213,10 +213,4 @@ public class SoloGame : MonoBehaviour
     {
         notice1.text = "共同位置加权值：  " + Math.Round(currentMarket.Common, 2) + "\n实际提示数个数为:   " + currentMarket.initLists.Count;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

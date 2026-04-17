@@ -48,11 +48,6 @@ public class SelectPanelNode : MonoBehaviour
             OnSelectValue.Invoke(k);
         });
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     internal void ShowPanel(bool[] status, Action<int> onSelectNode)
     {
