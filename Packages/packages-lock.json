@@ -1,5 +1,19 @@
 {
   "dependencies": {
+    "com.code-philosophy.leanclr": {
+      "version": "https://github.com/focus-creative-games/leanclr4unity.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "cf847271350b7ce0005c250b00bdf2bd021da695"
+    },
+    "com.qq.weixin.minigame": {
+      "version": "https://github.com/wechat-miniprogram/minigame-tuanjie-transform-sdk.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "f67e7851c345f514e9079819cae16273ff05b33c"
+    },
     "com.unity.2d.animation": {
       "version": "9.2.0",
       "depth": 1,
@@ -119,8 +133,8 @@
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.services.analytics": "1.0.4",
-        "com.unity.ugui": "1.0.0"
+        "com.unity.ugui": "1.0.0",
+        "com.unity.services.analytics": "1.0.4"
       },
       "url": "https://packages.unity.com"
     },
